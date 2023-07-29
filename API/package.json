@@ -1,0 +1,19 @@
+{
+  "name": "cafe-royale",
+  "version": "1.0.0",
+  "description": "a restaurant web service",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mr Styler",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-mongodb-session": "^3.1.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-session": "^1.17.2",
+    "mongoose": "^7.3.0"
+  }
+}
