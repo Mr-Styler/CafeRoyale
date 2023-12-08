@@ -1,12 +1,12 @@
 const momgoose = require('mongoose');
 
 const recipeSchema = new momgoose.Schema({
-    name: {
+    title: {
         type: String,
         minLength: 10,
         trim: true
     },
-    decription: {
+    description: {
         type: String
     },
     avgRating: {
@@ -38,5 +38,11 @@ const recipeSchema = new momgoose.Schema({
 },
 { timestamps: true }
 )
+
+recipeSchema.pre(/^find/, function (next) {
+    this.populate({path: 'author', select: 'name photo'})
+
+    next();
+})
 
 module.exports = momgoose.model('Recipe', recipeSchema);

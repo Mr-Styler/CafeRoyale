@@ -60,10 +60,4 @@ module.exports = (err, req, res, next) => {
     } else if (process.env.NODE_ENV === 'development') {
         sendErrDev(err, res)
     }
-    // res.status(err.statusCode).json({
-    //     status: err.status,
-    //     message: err.message,
-    //     error: err,
-    //     stack: err.stack
-    // })
 }

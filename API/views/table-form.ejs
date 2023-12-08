@@ -1,0 +1,62 @@
+<%- include ('./partials/__head') %>
+
+<body class="">
+    <%- include ('./partials/__nav') %>
+    <div class="profile-content">
+        <div class="sidePanel">
+            <h2>User Profile</h2>
+            <div class="tabs">
+                <ul class="nav">
+                    <li class="nav-item"><a href="/profile"><i class="fa fa-user"></i>User Info</a></li>
+                    <li class="nav-item"><a href="/cart"><i class="fa fa-shopping-cart"></i>Cart</a></li>
+                    <li class="nav-item"><a href="/table-booking"><i class="fa fa-table"></i>Table Reservations</a></li>
+                    <li class="nav-item"><a href="/orders"><i class="fa fa-money-bill-wave"></i>Orders</a></li>
+                    <li class="nav-item"><a href="/settings"><i class="fa fa-cog"></i>Settings</a></li>
+                </ul>
+                <ul>
+                     <li class="nav-item"><button><i class="fa fa-sign-out-alt"></i>Sign Out</button></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="table-main">
+            <div class="table-form">
+                <h2>Make a new reservation</h2>
+                <div class="form">
+                    <div class="form-group">
+                        <label for="">Phone Number</label>
+                        <input class="form-input" type="text" name="phone" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Number Of People</label>
+                        <input class="form-input" type="number" name="no_of_people" min="1" max="4" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Time</label>
+                        <input class="form-input" type="datetime-local" name="time" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Your message</label>
+                        <textarea class="form-input" name="message" id="" cols="30" rows="10" placeholder="Write down anything you'd like us to note"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn" onclick="bookTable(this)">Book a Table</button>
+                    </div>
+                </div>
+            </div>
+            <div class="reservations">
+                <h3>Your table reservations</h3>
+                <h4>Upcoming</h4>
+                <ul class="upcoming">
+                    
+                </ul>
+                <h4>Previous</h4>
+                <ul class="previous">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <%- include ('./partials/__footer') %>
+
+<%- include ('./partials/__end') %>

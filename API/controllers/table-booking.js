@@ -7,10 +7,14 @@ exports.getAllBookings = queryFunc.getAll(Table_Booking);
 exports.getBooking = queryFunc.getOne(Table_Booking);
 
 exports.createTableBooking = catchAsync(async (req, res, next) => {      
-    const { phone, date, time, num_of_people, message } = req.body;
+    const { phone, time, no_of_people, message } = req.body;
 
-    const [year, month, day] = date.split("-");
-    const [hour, minute] = time.split(":");
+    console.log(req.body)
+
+    const [year, month, day] = time.split("T")[0].split('-')
+    const [hour, minute] = time.split("T")[1].split(":");
+
+    console.log(year, month, day, hour, minute)
 
     const edittedTime = new Date(year, month, day, hour, minute);
     const nextDay = new Date(year, month, String(day * 1 + 1));
@@ -30,9 +34,10 @@ exports.createTableBooking = catchAsync(async (req, res, next) => {
     bookings = await Table_Booking.create({
         phone,
         table_no,
-        time: edittedTime,
-        num_of_people,
+        time,
+        no_of_people,
         message,
+        booker: req.session.user._id
     });
 
     bookings.save();

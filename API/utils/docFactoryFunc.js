@@ -1,22 +1,33 @@
+const APIFeatures = require("./apiFeatures")
 const catchAsync = require('./catchAsync');
 
-// if(req.params.recipeId) req.body.article = {articleType: 'Recipe', id: req.params.recipeId}
-//         if(req.params.blogId) req.body.article = {articleType: 'Blog', id: req.params.blogId}
-//         if(req.params.bookerId) req.body.booker = req.params.bookerId;
-
-//         console.log(req.params);
-
 exports.getAll = Model => catchAsync(async (req, res, next) => {
-        const docs = await Model.find(req.body).select('-updatedAt');
+    const features = new APIFeatures(Model, req.query)
+    .filter()
+    .sort()
+    .limitFields()
+    .paginate();
 
-        res.status(200).json({
-            status: 'success',
-            results: docs.length,
-            data: {
-                documents: docs
-            }
-        })
+    const documents = new APIFeatures(Model, req.query).filter()
+    const Query = (await documents.query)
+
+    const total_no_of_documents = (Query.length)
+
+    const last_page = Math.ceil(total_no_of_documents / features.metaData().docs_per_page)
+
+    const meta = {...features.metaData(),total_no_of_documents, last_page}
+    
+    const docs = await features.query;
+
+    res.status(200).json({
+        status: 'success',
+        results: docs.length,
+        data: {
+            documents: docs,
+            meta 
+        }
     })
+})
 
 exports.getOne = Model => catchAsync( async (req, res, next) => {
         const doc = await Model.findById(req.params.id).select('-updatedAt');
@@ -31,21 +42,19 @@ exports.getOne = Model => catchAsync( async (req, res, next) => {
         })
     })
     
-    exports.createNew = Model =>  catchAsync( async (req, res, next) => {
-        const newDoc = await Model.create(req.body);
-        
-        res.status(201).json({
-            status: 'success',
-            data: {
-                document: newDoc
-            }
-        })
+exports.createNew = Model =>  catchAsync( async (req, res, next) => {
+    const newDoc = await Model.create(req.body);
+    
+    res.status(201).json({
+        status: 'success',
+        data: {
+            document: newDoc
+        }
     })
+})
 
     exports.updateOne = Model => catchAsync(async (req, res, next) => {
         console.log(req.params.recipeId, req.params.blogId);
-        if(req.params.recipeId) req.body.article = {articleType: 'Recipe', id: req.params.recipeId}
-        if(req.params.blogId) req.body.article = {articleType: 'Blog', id: req.params.blogId}
         
         console.log(req.body);
         const updatedDoc = await Model.findByIdAndUpdate(req.params.id, req.body, {

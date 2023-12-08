@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+
+    <link rel="stylesheet" href="/css/swiper-bundle.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="auth-body sign-up">
+    
+    <div class="auth-card">
+        <h1>Sign Up</h1>
+        <div class="auth-form">
+            <div class="input-group">
+                <input type="text" id="username" placeholder="FullName">
+                <i class="fa fa-user"></i>
+            </div>
+            <div class="input-group">
+                <input type="email" id="email" placeholder="Email">
+                <i class="fa fa-envelope"></i>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Password (minimun 8 characters)">
+                <i class="fa fa-lock"></i>
+            </div>
+            <div class="input-group">
+                <input type="password" id="confirmPassword" placeholder="Confirm Password">
+                <i class="fa fa-lock"></i>
+            </div>
+            <button type="button" onclick="register(this)">Create Account</button>
+            <div class="socials">
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-instagram"></i>
+            </div>
+        </div>
+
+        <p>Already have an account? <a href="/login">Sign In</a></p>
+    </div>
+
+    <script src="../js/requests.js"></script>
+</body>
+</html>

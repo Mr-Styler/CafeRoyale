@@ -27,12 +27,16 @@ const userSchema = new mongoose.Schema({
         default: 'user',
         enum: ['user', 'admin', 'chef']
     },
+    photo: {
+        type: String,
+        default: '/img/users/user-1.jpg'
+    },
     cart: {
         items: [
             {
                 product: {
                     type: mongoose.Schema.Types.ObjectId,
-                    ref: 'Meals'
+                    ref: 'Meal'
                 },
                 quantity: {
                     type: Number,
@@ -41,6 +45,9 @@ const userSchema = new mongoose.Schema({
                 }
             }
         ]
+    },
+    phone: {
+        type: String
     },
     resetToken: {
         type: String
@@ -80,7 +87,7 @@ userSchema.methods.addToUserCart = async function (productObj) {
 
     if (index > -1) {
         console.log(this.cart.items[index])
-        if (productObj.quantity) this.cart.items[index].quantity = productObj.quantity
+        if (productObj.quantity && productObj.quantity > 0) this.cart.items[index].quantity = productObj.quantity
         else this.cart.items[index].quantity += 1
 
         return await this.save()

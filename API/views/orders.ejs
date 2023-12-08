@@ -1,0 +1,37 @@
+<%- include ('./partials/__head') %>
+
+<body>
+    <%- include ('./partials/__nav') %>
+    <div class="order-content">
+        <div class="sidePanel">
+            <h2>User Profile</h2>
+            <div class="tabs">
+                <ul class="nav">
+                    <li class="nav-item"><a href="/profile"><i class="fa fa-user"></i>User Info</a></li>
+                    <li class="nav-item"><a href="/cart"><i class="fa fa-shopping-cart"></i>Cart</a></li>
+                    <li class="nav-item"><a href="/table-booking"><i class="fa fa-table"></i>Table Reservations</a></li>
+                    <li class="nav-item"><a href="/orders"><i class="fa fa-money-bill-wave"></i>Orders</a></li>
+                    <li class="nav-item"><a href="/settings"><i class="fa fa-cog"></i>Settings</a></li>
+                    <li class="nav-item"><button><i class="fa fa-sign-out-alt"></i>Sign Out</button></li>
+                </ul>
+            </div>
+        </div>
+        <div class="order-main">
+            <ul>
+                <li class="order-card card">
+                    <div class="order-details">
+                        <h3>Total: $2345</h3>
+                        <p class="item-size">4 items</p>
+                        <p class="time">time</p>
+                    </div>
+                    <div class="status complete">pending</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="modals"></div>
+    </div>
+
+    <%- include ('./partials/__footer') %>
+
+    <%- include ('./partials/__end') %>

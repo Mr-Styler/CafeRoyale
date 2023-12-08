@@ -1,0 +1,51 @@
+<%- include ('./partials/__head') %>
+
+<body class="">
+    <%- include ('./partials/__nav') %>
+    <div class="profile-content">
+        <div class="sidePanel">
+            <h2>User Profile</h2>
+            <div class="tabs">
+                <ul class="nav">
+                    <li class="nav-item"><a href="/profile"><i class="fa fa-user"></i>User Info</a></li>
+                    <li class="nav-item"><a href="/cart"><i class="fa fa-shopping-cart"></i>Cart</a></li>
+                    <li class="nav-item"><a href="/table-booking"><i class="fa fa-table"></i>Table Reservations</a></li>
+                    <li class="nav-item"><a href="/orders"><i class="fa fa-money-bill-wave"></i>Orders</a></li>
+                    <li class="nav-item"><a href="/settings"><i class="fa fa-cog"></i>Settings</a></li>
+                </ul>
+                <ul>
+                     <li class="nav-item"><button><i class="fa fa-sign-out-alt"></i>Sign Out</button></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="profile-main">
+            <div>
+                <div class="current-user-details">
+                    <div class="user-img">
+                        <img src="../../img/users/user-1.jpg" alt="" class="profile-pic">
+                        <div class="file-input-container">
+                            <input type="file" name="" id="user-img-input" style="display: none;">
+                            <label for="user-img-input"><i class="fa fa-pen"></i></label>
+                        </div>
+                        <span></span>
+                    </div>
+                    <div class="user-info">
+                        <h3>Hello, Name</h3>
+                        <p>email</p>
+                    </div>
+                </div>
+                <div class="user-update-form">
+                    <div class="form-group">
+                        <input type="text" class="form-input" name="name" placeholder="Your Name">
+                        <input type="tel" class="form-input" name="phone" placeholder="Your Phone Number">
+                    </div>
+                    <button class="btn" onclick="sendUpdatedUser(this)">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include ('./partials/__footer') %>
+
+<%- include ('./partials/__end') %>

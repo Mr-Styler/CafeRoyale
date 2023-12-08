@@ -39,7 +39,8 @@ exports.login = catchAsync(async (req, res, next) => {
     req.session.user = {
         _id : foundUser._id,
         name: foundUser.name,
-        role: foundUser.role
+        role: foundUser.role,
+        photo: foundUser.photo
     };
     req.session.isAuth = true;
     res.status(200).json({
@@ -86,6 +87,17 @@ exports.addToCart = catchAsync(async (req, res, next) => {
     })
 });
 
+exports.getUsersCart = catchAsync(async (req, res, next) => {
+    const user = await User.findById(req.session.user._id).populate('cart.items.product');
+
+    res.status(200).json({
+        status: 'success',
+        data: {
+            cart: user.cart
+        }
+    })
+});
+
 exports.forgotPassword = catchAsync(async (req, res, next) => {
     const { email } = req.body
     // 1. find user using email
@@ -94,10 +106,10 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     if (!user) return next(new appError(`No user found with this ID`, 404))
 
     // 2. generate reset-token
-    const token = user.generateResetToken();
+    const token = await user.generateResetToken();
     await user.save({validateBeforeSave: false});
 
-    const resetUrl = `${req.protocol}://${req.get('host')}/api/users/reset/${token}`;
+    const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/users/reset/${token}`;
 
     return res.status(200).json({
         status: 'success',
@@ -118,6 +130,12 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     // 2. set new password to user
     user.password = password;
     user.resetToken = undefined, user.resetExpires = undefined;
+    await user.save();
+
+    res.status(200).json({
+        status: 'success',
+        message: `password successfully resetted`
+    })
 })
 
 exports.updatePassword = catchAsync(async (req, res, next) => {
@@ -134,6 +152,6 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
 
     res.status(200).json({
         status: 'success',
-        message: 'You have successfully '
+        message: 'You have successfully changed your password'
     })
 })

@@ -1,0 +1,39 @@
+<%- include ('./partials/__head') %>
+
+<body class="body-blog">
+    <%- include ('./partials/__nav') %>
+    <div class="page-content">
+        <div class="blog-main">
+            <div class="loader"></div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="review-modal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+              <span class="close">&times;</span>
+              <h2>Write a review</h2>
+            </div>
+            <div class="modal-body">
+              <div class="form-group form-ctrl-group">
+                <label for="">Write your review</label>
+                <input class="form-input" type="text" name="review">
+              </div>
+              <div class="form-group form-ctrl-group">
+                <label for="">How would you rate this article</label>
+                <input class="form-input" type="number" max="5" autocapitalize="" name="rating">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn" onclick="sendReview(this)">Send</button>
+            </div>
+          </div>
+    
+    </div>
+
+    <%- include ('./partials/__footer') %>
+
+    <%- include ('./partials/__end') %>
