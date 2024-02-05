@@ -17,7 +17,7 @@ exports.getShopPage = catchAsync( async (req, res, next ) => {
 });
 
 exports.getRecipePage = catchAsync( async (req, res, next ) => {
-    res.render('recipes', { pageTitle: 'Top Chefs Recipes', currentUser: req.session.user });
+    res.render('recipes', { pageTitle: `Top Chef's Recipes`, currentUser: req.session.user });
 });
 
 exports.getRecipeShowPage = catchAsync( async (req, res, next) => {

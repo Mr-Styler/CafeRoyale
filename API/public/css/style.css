@@ -127,6 +127,10 @@ body {
     padding: .6rem;
 }
 
+.btn:hover {
+    cursor: pointer;
+}
+
 .btn.active {
     background-color: #fcc419;
     color: #f1f3f5;
@@ -1426,7 +1430,7 @@ h4.recipe-title {
 }
 
 @media screen and (max-width: 835px) {
-    .main-nav {
+    .main-nav .nav-list {
         display: none;
     }
 

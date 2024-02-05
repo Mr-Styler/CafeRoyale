@@ -1,3 +1,22 @@
+const navigations = [
+    {
+        url: '',
+        index: 0
+    },
+    {
+        url: 'shop',
+        index: 1
+    },
+    {
+        url: 'recipes',
+        index: 2
+    },
+    {
+        url: 'blogs',
+        index: 3
+    }
+]
+
 const axios = async (url, method, ...body) => {
     console.log(body)
     reqOpts = {
@@ -35,6 +54,19 @@ const fetchUser = async () => {
     }
 }
 
+const navigate = async () => {
+    const previouslyActive = document.querySelector('.main-nav .nav-item.active')
+    previouslyActive.classList.toggle('active')
+    
+    const currentlyActiveIndex = navigations.find(e => e.url === location.pathname.split('/')[1])
+    
+    const activeNav = document.querySelectorAll('.main-nav .nav-item')[currentlyActiveIndex.index]
+    activeNav.classList.toggle('active')
+
+    console.log(currentlyActiveIndex, activeNav)
+}
+
+navigate();
 
 const queryPage = async (btn) => {
     const page = btn.id.split('_')[1]
@@ -388,7 +420,7 @@ const bookTable = async (btn) => {
     }
 }
 
-// CLIECT_SIDE RENDERING
+// CLIENT_SIDE RENDERING
 const renderRating = (number) => {
     const rating = document.createElement('div')
     for (let i = 0; i < Math.floor(number); i++) {
@@ -486,7 +518,6 @@ const renderRecipes = (recipes) => {
         </div>
         <div class="recipe-content">
             <h4 class="recipe-title">${recipe.title}</h4>
-            <p class="recipe-summary">${recipe.description.substring(0, 80)}...</p>
         </div>
         <div class="actions">
             <div class="action-info">
